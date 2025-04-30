@@ -1,4 +1,4 @@
-package com.badlogic.drop;
+package io.github.SimpleGame_IvanMellado;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -73,7 +73,6 @@ public class Main implements ApplicationListener {
 
         batch = new SpriteBatch();
         font = new BitmapFont();
-        font.getData().setScale(2); //escala del texto
         score = 0; // puntuaje
 
 
@@ -97,11 +96,6 @@ public class Main implements ApplicationListener {
         float speed = 4f;
         float delta = Gdx.graphics.getDeltaTime(); // retrieve the current delta
 
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            bucketSprite.translateX(speed * delta); // Move the bucket right
-        }else if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-            bucketSprite.translateX(-speed * delta); // Move the bucket right
-        }
 
         if(Gdx.input.isTouched()){
             touchPos.set(Gdx.input.getX(),Gdx.input.getY());
@@ -133,9 +127,9 @@ public class Main implements ApplicationListener {
 
             if (dropSprite.getY() < -dropHeight) dropSprites.removeIndex(i);
             else if (bucketRectangle.overlaps(dropRectangle)) {
-                    dropSprites.removeIndex(i);
-                    dropSound.play();
-                    score ++; // augmenta el contador del score
+                dropSprites.removeIndex(i);
+                dropSound.play();
+                score ++; // augmenta el contador del score
             }
         }
 
@@ -168,7 +162,7 @@ public class Main implements ApplicationListener {
         // dibujar texto en coordenadas de pantalla
         spriteBatch.setProjectionMatrix(spriteBatch.getProjectionMatrix().idt().setToOrtho2D(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         spriteBatch.begin();
-        font.getData().setScale(2); // escala normal para píxeles
+        font.getData().setScale(5); // escala normal para píxeles
         font.draw(spriteBatch, "Puntuació: " + score, 20, Gdx.graphics.getHeight() - 20);
         spriteBatch.end();
 
